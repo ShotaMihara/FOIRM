@@ -44,8 +44,8 @@ if(isset($_POST['submit'])) {
 <tr>
     <th>お問い合わせの種類</th><td>
     <select name="subject">
-        <option value="お仕事に関するお問い合わせ">お仕事に関するお問い合わせ</option>
-        <option value="その他のお問い合わせ">その他のお問い合わせ</option>
+        <option value="お仕事に関するお問い合わせ" <?php if(isset($subject) && $subject === "お仕事に関するお問い合わせ"){echo "selected";}?>>お仕事に関するお問い合わせ</option>
+        <option value="その他のお問い合わせ"<?php if(isset($subject) && $subject === "お仕事に関するお問い合わせ"){echo "selected";}?>>その他のお問い合わせ</option>
     </select></td>
 </tr>
 <tr>
