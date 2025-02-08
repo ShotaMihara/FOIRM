@@ -1,15 +1,13 @@
 <?php
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-
+session_start();
 $errors = array();
 
+
 if(isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $body = $_POST['body'];
+    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+    $email = htmlspecialchars($_POST['email'], ENT_QUOTES,);
+    $subject = htmlspecialchars($_POST['subject'], ENT_QUOTES,);
+    $body = htmlspecialchars($_POST['body'], ENT_QUOTES,);
 
     if ($name == '') {
         $errors['name'] = 'お名前が入力されていません';
@@ -20,6 +18,14 @@ if(isset($_POST['submit'])) {
 
     if ($body == '') {
         $errors['body'] = 'お問い合わせの種類が選択されていません';
+    }
+    if(count($errors) === 0) {
+        $_SESSION['name'] = $name;
+        $_SESSION['email'] = $email;
+        $_SESSION['subject'] = $subject;
+        $_SESSION['body'] = $body;
+        header('Location: form2.php');
+        exit();
     }
 }
 
