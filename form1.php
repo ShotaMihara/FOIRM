@@ -28,7 +28,12 @@ if(isset($_POST['submit'])) {
         exit();
     }
 }
-
+if(isset($_GET['action']) && $_GET['action'] === 'edit') {
+    $name = $_SESSION['name'];
+    $email = $_SESSION['email'];
+    $subject = $_SESSION['subject'];
+    $body = $_SESSION['body'];
+}
 
 
 ?>
