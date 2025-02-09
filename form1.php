@@ -4,21 +4,30 @@ $errors = array();
 
 
 if(isset($_POST['submit'])) {
-    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
-    $email = htmlspecialchars($_POST['email'], ENT_QUOTES,);
-    $subject = htmlspecialchars($_POST['subject'], ENT_QUOTES,);
-    $body = htmlspecialchars($_POST['body'], ENT_QUOTES,);
 
-    if ($name == '') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $body = $_POST['body'];
+
+    $name = htmlspecialchars($name, ENT_QUOTES);
+    $email = htmlspecialchars($email, ENT_QUOTES);
+    $subject = htmlspecialchars($subject, ENT_QUOTES);
+    $body = htmlspecialchars($body, ENT_QUOTES);
+
+    if ($name ==='') {
         $errors['name'] = 'お名前が入力されていません';
     }
-    if ($email == '') {
+    if ($email ==='') {
         $errors['email'] = 'メールアドレスが入力されていません';
     }
-
-    if ($body == '') {
-        $errors['body'] = 'お問い合わせの種類が選択されていません';
+    if ($subject ==='') {
+        $errors['subject'] = 'お問い合わせの種類が選択されていません';
     }
+    if ($body ==='') {
+        $errors['body'] = 'お問い合わせ内容が入力されていません';
+    }
+
     if(count($errors) === 0) {
         $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
@@ -28,6 +37,7 @@ if(isset($_POST['submit'])) {
         exit();
     }
 }
+
 if(isset($_GET['action']) && $_GET['action'] === 'edit') {
     $name = $_SESSION['name'];
     $email = $_SESSION['email'];

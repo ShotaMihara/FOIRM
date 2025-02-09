@@ -7,8 +7,8 @@ if(isset($_SESSION['name'])){
     $body = $_SESSION['body'];
 }
 
-$SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(48));
-$token = htmlspecialchars($SESSION['token'], ENT_QUOTES);
+$_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(48));
+$token = htmlspecialchars($_SESSION['token'], ENT_QUOTES);
 
 ?>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ $token = htmlspecialchars($SESSION['token'], ENT_QUOTES);
 </head>
 <body>
 <form action="form3.php"method="post">
-<input type="hidden" name="token" value="<?php echo $token;?>">
+<input type="hidden" name="token" value="<?php echo $token?>">
 <table>
     <tr>
         <th>お名前</th>
